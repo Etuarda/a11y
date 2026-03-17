@@ -32,11 +32,36 @@ const mockRules = {
         { value: 'content', label: 'Conteúdo (artigo/página informativa)' }
       ]
     },
-    { id: 'keyboardOnly', label: 'O fluxo precisa ser 100% utilizável por teclado?', type: 'boolean', required: true },
-    { id: 'screenReader', label: 'O fluxo precisa funcionar bem com leitor de tela?', type: 'boolean', required: true },
-    { id: 'sensorySensitivity', label: 'Há risco de sensibilidade sensorial (movimento, flashes, sons)?', type: 'boolean', required: true },
-    { id: 'highCognitiveLoad', label: 'A tarefa envolve muitos passos/opções (alta carga cognitiva)?', type: 'boolean', required: true },
-    { id: 'timePressure', label: 'Existe pressão de tempo (sessão expira, countdown etc.)?', type: 'boolean', required: true }
+    {
+      id: 'keyboardOnly',
+      label: 'O fluxo precisa ser 100% utilizável por teclado?',
+      type: 'boolean',
+      required: true
+    },
+    {
+      id: 'screenReader',
+      label: 'O fluxo precisa funcionar bem com leitor de tela?',
+      type: 'boolean',
+      required: true
+    },
+    {
+      id: 'sensorySensitivity',
+      label: 'Há risco de sensibilidade sensorial (movimento, flashes, sons)?',
+      type: 'boolean',
+      required: true
+    },
+    {
+      id: 'highCognitiveLoad',
+      label: 'A tarefa envolve muitos passos/opções (alta carga cognitiva)?',
+      type: 'boolean',
+      required: true
+    },
+    {
+      id: 'timePressure',
+      label: 'Existe pressão de tempo (sessão expira, countdown etc.)?',
+      type: 'boolean',
+      required: true
+    }
   ]
 };
 
@@ -147,36 +172,76 @@ function simulateBackendEvaluation(answers) {
   const techniques = [];
 
   if (answers.interfaceType === 'form') {
-    wcag.push({ id: '1.3.1', name: 'Info and Relationships', summary: 'Estrutura semântica e relações programáticas claras.' });
-    wcag.push({ id: '3.3.2', name: 'Labels or Instructions', summary: 'Rótulos visíveis e instruções claras para inputs.' });
-    gaia.push({ id: 'COGNITIVE_LOAD', name: 'Redução de Carga Cognitiva', summary: 'Quebrar o formulário em etapas lógicas.' });
+    wcag.push({
+      id: '1.3.1',
+      name: 'Info and Relationships',
+      summary: 'Estrutura semântica e relações programáticas claras.'
+    });
+    wcag.push({
+      id: '3.3.2',
+      name: 'Labels or Instructions',
+      summary: 'Rótulos visíveis e instruções claras para inputs.'
+    });
+    gaia.push({
+      id: 'COGNITIVE_LOAD',
+      name: 'Redução de Carga Cognitiva',
+      summary: 'Quebrar o formulário em etapas lógicas.'
+    });
     techniques.push('Associar a tag <label> diretamente ao ID do <input>.');
     techniques.push('Utilizar aria-describedby para mensagens de erro inline.');
   }
 
   if (answers.interfaceType === 'modal') {
-    wcag.push({ id: '2.4.3', name: 'Focus Order', summary: 'Ordem lógica de foco (Focus Trap).' });
-    gaia.push({ id: 'USER_AUTONOMY', name: 'Autonomia do Usuário', summary: 'Garantir botões de saída fáceis de encontrar.' });
+    wcag.push({
+      id: '2.4.3',
+      name: 'Focus Order',
+      summary: 'Ordem lógica de foco (Focus Trap).'
+    });
+    gaia.push({
+      id: 'USER_AUTONOMY',
+      name: 'Autonomia do Usuário',
+      summary: 'Garantir botões de saída fáceis de encontrar.'
+    });
     techniques.push('Retornar o foco ao elemento acionador ao fechar o modal.');
   }
 
   if (answers.keyboardOnly) {
-    wcag.push({ id: '2.1.1', name: 'Keyboard', summary: 'Todas as funcionalidades operáveis via teclado.' });
-    wcag.push({ id: '2.4.7', name: 'Focus Visible', summary: 'Indicador visual de foco evidente.' });
+    wcag.push({
+      id: '2.1.1',
+      name: 'Keyboard',
+      summary: 'Todas as funcionalidades operáveis via teclado.'
+    });
+    wcag.push({
+      id: '2.4.7',
+      name: 'Focus Visible',
+      summary: 'Indicador visual de foco evidente.'
+    });
     techniques.push('Garantir outline através da pseudo-classe :focus-visible.');
   }
 
   if (answers.screenReader) {
-    wcag.push({ id: '4.1.2', name: 'Name, Role, Value', summary: 'Nome, função e valor expostos programaticamente.' });
+    wcag.push({
+      id: '4.1.2',
+      name: 'Name, Role, Value',
+      summary: 'Nome, função e valor expostos programaticamente.'
+    });
     techniques.push("Anunciar mudanças dinâmicas de estado via aria-live='polite'.");
   }
 
   if (answers.timePressure) {
-    gaia.push({ id: 'PREDICTABILITY', name: 'Previsibilidade', summary: 'Avisar o usuário antes que sessões expirem.' });
+    gaia.push({
+      id: 'PREDICTABILITY',
+      name: 'Previsibilidade',
+      summary: 'Avisar o usuário antes que sessões expirem.'
+    });
   }
 
   if (wcag.length === 0) {
-    wcag.push({ id: '1.4.3', name: 'Contrast (Minimum)', summary: 'Garantir contraste mínimo de 4.5:1.' });
+    wcag.push({
+      id: '1.4.3',
+      name: 'Contrast (Minimum)',
+      summary: 'Garantir contraste mínimo de 4.5:1.'
+    });
   }
 
   const goalsByInterface = {
@@ -193,7 +258,12 @@ function simulateBackendEvaluation(answers) {
     recommendations: { wcag, gaia, techniques },
     artifacts: {
       userStory: `Como ${role},\nQuero ${goalsByInterface[answers.interfaceType] || 'operar a interface'},\nPara concluir meu objetivo com autonomia e sem barreiras tecnológicas.`,
-      bdd: `Feature: Accessibility requirements\n\nScenario: Assisted navigation\n  Given the user accesses the component\n  When they interact using preferred assistive resources\n  Then the system must respond in a predictable and descriptive way`
+      bdd: `Funcionalidade: Requisitos de acessibilidade
+
+Cenário: Navegação assistida
+  Dado que a pessoa usuária acessa o componente
+  Quando interage usando recursos assistivos preferenciais
+  Então o sistema deve responder de forma previsível e descritiva`
     }
   };
 }
@@ -347,7 +417,7 @@ function renderResults(payload) {
       </div>
 
       <div>
-        <h3 class="block-title">BDD (Gherkin)</h3>
+        <h3 class="block-title">BDD (Gherkin em português)</h3>
         <pre class="artifact-block">${escapeHtml(payload.artifacts.bdd)}</pre>
       </div>
     </div>
@@ -388,13 +458,33 @@ async function fetchJson(url, options) {
 }
 
 function createMarkdownExport(payload) {
-  return `# Artefatos de Acessibilidade\n\n## User Story\n\n${payload.artifacts.userStory}\n\n## BDD\n\n${payload.artifacts.bdd}\n\n## WCAG\n\n${payload.recommendations.wcag
-    .map((criterion) => `- **${criterion.id}** ${criterion.name}: ${criterion.summary}`)
-    .join('\n')}\n\n## Gaia\n\n${payload.recommendations.gaia
-    .map((principle) => `- **${principle.id}** ${principle.name}: ${principle.summary}`)
-    .join('\n')}\n\n## Técnicas\n\n${payload.recommendations.techniques
-    .map((technique) => `- ${technique}`)
-    .join('\n')}`;
+  return `# Artefatos de Acessibilidade
+
+## User Story
+
+${payload.artifacts.userStory}
+
+## BDD (Gherkin em português)
+
+${payload.artifacts.bdd}
+
+## WCAG
+
+${payload.recommendations.wcag
+  .map((criterion) => `- **${criterion.id}** ${criterion.name}: ${criterion.summary}`)
+  .join('\n')}
+
+## Gaia
+
+${payload.recommendations.gaia
+  .map((principle) => `- **${principle.id}** ${principle.name}: ${principle.summary}`)
+  .join('\n')}
+
+## Técnicas
+
+${payload.recommendations.techniques
+  .map((technique) => `- ${technique}`)
+  .join('\n')}`;
 }
 
 function fallbackCopy(text) {
@@ -510,10 +600,7 @@ function bindEvents() {
   elements.reset.addEventListener('click', handleReset);
   elements.copy.addEventListener('click', handleCopy);
   elements.export.addEventListener('click', handleExport);
-  elements.toggleAccessibility.addEventListener('click', () => {
-    toggleAccessibilityMode();
-    safeInitVlibras();
-  });
+  elements.toggleAccessibility.addEventListener('click', toggleAccessibilityMode);
 }
 
 function initializeApp() {
