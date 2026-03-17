@@ -110,7 +110,7 @@ function setError(message = '') {
   }
 }
 
-function safeInitVlibras() {
+function safeInitVlibras(retries = 20) {
   if (vlibrasStarted) {
     return;
   }
@@ -118,16 +118,26 @@ function safeInitVlibras() {
   const container = document.querySelector('[vw]');
 
   if (!container) {
+    console.warn('VLibras: container [vw] não encontrado.');
     return;
   }
 
-  try {
-    if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+  if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+    try {
       new window.VLibras.Widget('https://vlibras.gov.br/app');
       vlibrasStarted = true;
+      console.info('VLibras inicializado com sucesso.');
+      return;
+    } catch (error) {
+      console.warn('VLibras falhou ao inicializar:', error);
+      return;
     }
-  } catch (error) {
-    console.warn('VLibras falhou:', error);
+  }
+
+  if (retries > 0) {
+    setTimeout(() => safeInitVlibras(retries - 1), 300);
+  } else {
+    console.warn('VLibras não ficou disponível após múltiplas tentativas.');
   }
 }
 
@@ -520,4 +530,4 @@ function initializeApp() {
   loadQuestionnaire();
 }
 
-window.addEventListener('load', initializeApp);
+document.addEventListener('DOMContentLoaded', initializeApp);
