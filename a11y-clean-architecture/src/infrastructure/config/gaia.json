@@ -1,0 +1,10 @@
+{
+  "principles": {
+    "PREDICTABILITY": { "name": "Previsibilidade", "summary": "Evitar mudanças inesperadas; confirmar ações destrutivas." },
+    "CONSISTENCY": { "name": "Consistência", "summary": "Padrões de UI e linguagem consistentes em todo o fluxo." },
+    "COGNITIVE_LOAD": { "name": "Redução de carga cognitiva", "summary": "Quebrar tarefas; uma ação principal por etapa." },
+    "SENSORY_CONTROL": { "name": "Controle sensorial", "summary": "Evitar animações e sons; permitir reduzir movimento." },
+    "CLEAR_LANGUAGE": { "name": "Linguagem clara e literal", "summary": "Texto direto; evitar metáforas e ambiguidade." },
+    "USER_AUTONOMY": { "name": "Autonomia do usuário", "summary": "Permitir pausar, retomar e controlar o fluxo." }
+  }
+}

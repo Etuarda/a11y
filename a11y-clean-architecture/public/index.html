@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>a11y.io | Requirements Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+  <nav class="navbar">
+    <div class="navbar__brand-group">
+      <span class="brand">a11y.io</span>
+      <span class="navbar__subtitle">Requirements Engine</span>
+    </div>
+
+    <div class="navbar__actions">
+      <span id="a11y-status" class="status-chip" aria-live="polite">modo padrão</span>
+      <button type="button" id="toggle-accessibility" aria-pressed="false" class="ghost-button">
+        ◑ Modo Acessibilidade
+      </button>
+    </div>
+  </nav>
+
+  <main id="main-content" class="page-content">
+    <header class="hero">
+      <h1 class="hero__title">Inclusão.<br />Requisitos.</h1>
+      <p class="hero__description">
+        Traduza cenários e contexto de produto em critérios técnicos acionáveis. Gere recomendações WCAG 2.2,
+        princípios Gaia e artefatos de software instantaneamente.
+      </p>
+    </header>
+
+    <section class="editorial-card" aria-labelledby="form-title">
+      <div class="section-header">
+        <h2 id="form-title" class="section-title">Contexto da Interface.</h2>
+        <p class="section-kicker">Mapeamento de Necessidades Sensoriais e Físicas</p>
+      </div>
+
+      <form id="a11y-form" novalidate>
+        <div id="dynamic-fields" class="form-fields"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Avaliar Cenário</button>
+          <button type="button" id="btn-reset" class="btn-secondary">Nova Análise</button>
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="results-section" class="editorial-card hidden" aria-labelledby="results-title">
+      <div class="section-header section-header--results">
+        <div>
+          <h2 id="results-title" class="section-title">Artefatos.</h2>
+          <p class="section-kicker">Pronto para Engenharia</p>
+        </div>
+
+        <div class="results-header-actions">
+          <button type="button" id="btn-copy" class="btn-secondary btn-secondary--compact">Copiar Tudo</button>
+          <button type="button" id="btn-export" class="btn-secondary btn-secondary--compact">Exportar .md</button>
+        </div>
+      </div>
+
+      <div id="results" class="results-stack"></div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <h4 class="page-footer__brand">a11y.io</h4>
+    <p class="page-footer__text">Mapeamento Inteligente de Requisitos</p>
+  </footer>
+
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+
+  <script type="module" src="./assets/js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "interfaceType",
+    "label": "Qual é o tipo principal de interface?",
+    "type": "select",
+    "required": true,
+    "options": [
+      { "value": "form", "label": "Formulário (cadastro/login/checkout)" },
+      { "value": "modal", "label": "Modal/diálogo" },
+      { "value": "navigation", "label": "Navegação (menus, sidebar, tabs)" },
+      { "value": "content", "label": "Conteúdo (artigo/página informativa)" }
+    ]
+  },
+  {
+    "id": "keyboardOnly",
+    "label": "O fluxo precisa ser 100% utilizável por teclado?",
+    "type": "boolean",
+    "required": true
+  },
+  {
+    "id": "screenReader",
+    "label": "O fluxo precisa funcionar bem com leitor de tela?",
+    "type": "boolean",
+    "required": true
+  },
+  {
+    "id": "sensorySensitivity",
+    "label": "Há risco de sensibilidade sensorial (movimento, flashes, sons)?",
+    "type": "boolean",
+    "required": true
+  },
+  {
+    "id": "highCognitiveLoad",
+    "label": "A tarefa envolve muitos passos/opções (alta carga cognitiva)?",
+    "type": "boolean",
+    "required": true
+  },
+  {
+    "id": "timePressure",
+    "label": "Existe pressão de tempo (sessão expira, countdown etc.)?",
+    "type": "boolean",
+    "required": true
+  }
+]

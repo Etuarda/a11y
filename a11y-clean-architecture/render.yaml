@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: a11y-io-clean-architecture
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start

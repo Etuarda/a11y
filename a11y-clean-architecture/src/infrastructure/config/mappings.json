@@ -1,0 +1,88 @@
+[
+  {
+    "when": { "interfaceType": ["form"] },
+    "wcag": ["1.3.1", "3.3.1", "3.3.2", "4.1.2"],
+    "gaia": ["CLEAR_LANGUAGE", "COGNITIVE_LOAD", "PREDICTABILITY"],
+    "techniques": [
+      "Associar <label> a inputs e usar aria-describedby para mensagens de ajuda e erro.",
+      "Validar no submit e exibir erros próximos ao campo, sem mover foco automaticamente.",
+      "Evitar placeholders como único rótulo; usar instruções claras."
+    ]
+  },
+  {
+    "when": { "interfaceType": ["modal"] },
+    "wcag": ["2.1.1", "2.4.3", "2.4.7", "4.1.2"],
+    "gaia": ["PREDICTABILITY", "CONSISTENCY", "USER_AUTONOMY"],
+    "techniques": [
+      "Gerenciar focus trap dentro do modal enquanto estiver aberto.",
+      "Retornar foco ao elemento que abriu o modal ao fechar.",
+      "Fornecer botão Fechar claro e consistente."
+    ]
+  },
+  {
+    "when": { "interfaceType": ["navigation"] },
+    "wcag": ["2.1.1", "2.4.3", "2.4.7", "4.1.2"],
+    "gaia": ["CONSISTENCY", "PREDICTABILITY", "CLEAR_LANGUAGE"],
+    "techniques": [
+      "Garantir navegação por teclado e estados focus visíveis.",
+      "Indicar página ou aba atual com aria-current ou aria-selected.",
+      "Evitar rótulos ambíguos e usar termos específicos."
+    ]
+  },
+  {
+    "when": { "interfaceType": ["content"] },
+    "wcag": ["1.3.1", "1.4.3"],
+    "gaia": ["CLEAR_LANGUAGE", "COGNITIVE_LOAD", "SENSORY_CONTROL"],
+    "techniques": [
+      "Usar headings em ordem e listas semânticas.",
+      "Garantir contraste e espaçamento confortável.",
+      "Evitar animações automáticas e elementos piscantes."
+    ]
+  },
+  {
+    "when": { "keyboardOnly": [true] },
+    "wcag": ["2.1.1", "2.4.3", "2.4.7"],
+    "gaia": ["PREDICTABILITY"],
+    "techniques": [
+      "Não usar eventos somente de mouse; usar button e a corretamente.",
+      "Manter ordem de tabulação coerente e foco visível."
+    ]
+  },
+  {
+    "when": { "screenReader": [true] },
+    "wcag": ["1.3.1", "4.1.2", "3.3.1", "3.3.2"],
+    "gaia": ["CLEAR_LANGUAGE"],
+    "techniques": [
+      "Garantir nome acessível com aria-label ou aria-labelledby quando necessário.",
+      "Anunciar erros e estados com aria-live de forma parcimoniosa."
+    ]
+  },
+  {
+    "when": { "sensorySensitivity": [true] },
+    "wcag": [],
+    "gaia": ["SENSORY_CONTROL", "USER_AUTONOMY"],
+    "techniques": [
+      "Respeitar prefers-reduced-motion e oferecer opção de reduzir animações.",
+      "Evitar sons automáticos; permitir desativar feedback sonoro."
+    ]
+  },
+  {
+    "when": { "highCognitiveLoad": [true] },
+    "wcag": [],
+    "gaia": ["COGNITIVE_LOAD", "CONSISTENCY", "CLEAR_LANGUAGE"],
+    "techniques": [
+      "Aplicar progressive disclosure: mostrar apenas o necessário por etapa.",
+      "Reduzir escolhas simultâneas; priorizar uma CTA principal.",
+      "Usar microcopy direto e orientado à ação."
+    ]
+  },
+  {
+    "when": { "timePressure": [true] },
+    "wcag": [],
+    "gaia": ["USER_AUTONOMY", "PREDICTABILITY"],
+    "techniques": [
+      "Permitir pausar ou estender tempo quando aplicável.",
+      "Avisar antes de expirar e evitar perda de dados."
+    ]
+  }
+]
